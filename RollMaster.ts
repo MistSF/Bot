@@ -48,7 +48,7 @@ function roll(rollConsign, condition = null, target = null) {
             if (explosive && res === value[1])
                 i--;
         }
-        let valret = total.toString() + " (";
+        let valret = "__**" + total.toString() + "**__" + " (";
         results.forEach((e, i) => {
             valret += e.toString();
             if (i < results.length -1 )
