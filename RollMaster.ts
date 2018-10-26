@@ -58,12 +58,13 @@ function roll(rollConsign, condition = null, target = null) {
             total += res;
             if (explosive && res >= value[1] - range) {
                 i--;
-                results.push("*" + res.toString() +"*");
-            } else 
-                results.push(res);
+            }
+            results.push(res);
         }
         let valret = "**" + total.toString() + "**" + " (";
-        results.forEach((e: number, i) => {
+        results.forEach((e, i) => {
+            console.log(e + " : " + typeof(e));
+            
             let newE = "";
             if (condition != null && target != null) {
                 switch (condition) {
