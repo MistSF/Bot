@@ -33,6 +33,8 @@ function roll(rollConsign, condition = null, target = null) {
     let total = 0;
     let results = new Array();
     let explosive = false;
+    let success = 0;
+
     const value = rollConsign.split('d');
     if (value.length != 2)
         return rollSynthax;
@@ -48,54 +50,69 @@ function roll(rollConsign, condition = null, target = null) {
             if (explosive && res === value[1])
                 i--;
         }
-        let valret = "__**" + total.toString() + "**__" + " (";
+        let valret = "**" + total.toString() + "**" + " (";
         results.forEach((e, i) => {
+            if (condition != null && target != null) {
+                switch (condition) {
+                    case '<=':
+                        results.forEach(element => {
+                            if (element <= parseInt(target))
+                                success++;
+                            else
+                                e = "~~" + e.toString() + "~~";
+                        });
+                        break;
+                    case '>=':
+                        results.forEach(element => {
+                            if (element >= parseInt(target))
+                                success++;
+                            else
+                                e = "~~" + e.toString() + "~~";
+                        });
+                        break;
+                    case '<':
+                        results.forEach(element => {
+                            if (element < parseInt(target))
+                                success++;
+                            else
+                                e = "~~" + e.toString() + "~~";
+                        });
+                        break;
+                    case '>':
+                        results.forEach(element => {
+                            if (element > parseInt(target))
+                                success++;
+                            else
+                                e = "~~" + e.toString() + "~~";
+                        });
+                        break;
+                    case '!=':
+                        results.forEach(element => {
+                            if (element != parseInt(target))
+                                success++;
+                            else
+                                e = "~~" + e.toString() + "~~";
+                        });
+                        break;
+                    case '==':
+                        results.forEach(element => {
+                            if (element == parseInt(target))
+                                success++;
+                            else
+                                e = "~~" + e.toString() + "~~";
+                        });
+                        break;
+                }
+            }
+
             valret += e.toString();
             if (i < results.length -1 )
                 valret += ", ";
             else
                 valret += ")";
         })
+
         if (condition != null && target != null) {
-            let success = 0;
-            switch (condition) {
-                case '<=':
-                    results.forEach(element => {
-                        if (element <= parseInt(target))
-                            success++;
-                    });
-                    break;
-                case '>=':
-                    results.forEach(element => {
-                        if (element >= parseInt(target))
-                            success++;
-                    });
-                    break;
-                case '<':
-                    results.forEach(element => {
-                        if (element < parseInt(target))
-                            success++;
-                    });
-                    break;
-                case '>':
-                    results.forEach(element => {
-                        if (element > parseInt(target))
-                            success++;
-                    });
-                    break;
-                case '!=':
-                    results.forEach(element => {
-                        if (element != parseInt(target))
-                            success++;
-                    });
-                    break;
-                case '==':
-                    results.forEach(element => {
-                        if (element == parseInt(target))
-                            success++;
-                    });
-                    break;
-            }
             return valret + " : " + success + " success";
         } else
             return valret;
