@@ -30,10 +30,12 @@ function manageMessage (msg) {
 }
 
 function roll(rollConsign, condition = null, target = null) {
+    let roll = 0;
     let total = 0;
     let results = new Array();
     let explosive = false;
     let success = 0;
+    let range = 0;
 
     const value = rollConsign.split('d');
     if (value.length != 2)
@@ -43,15 +45,18 @@ function roll(rollConsign, condition = null, target = null) {
 
         if (value[1].indexOf('!') > -1) {
             explosive = true;
-        }
+            let exp = value[1].split('!');
+            value[1] = parseInt(exp[0]);
+            if (exp[1])
+                range = parseInt(exp[1]);
+        } else 
+            value[1] = parseInt(value[1]);
 
-        value[1] = parseInt(value[1]);
-
-        for (let i = 0; i < value[0]; i++) {
+        for (let i = 0; i < value[0] && roll < 200; i++, roll++) {
             let res = getRandomInt(value[1]) + 1;
             results.push(res);
             total += res;
-            if (explosive && res === value[1])
+            if (explosive && res >= value[1] - range)
                 i--;
         }
         let valret = "**" + total.toString() + "**" + " (";
