@@ -35,6 +35,7 @@ function roll(rollConsign, condition = null, target = null) {
     let results = new Array();
     let explosive = false;
     let success = 0;
+    let failed = 0;
     let range = 0;
 
     const value = rollConsign.split('d');
@@ -72,7 +73,7 @@ function roll(rollConsign, condition = null, target = null) {
                         }
                         else {
                             e = "~~" + e.toString() + "~~";
-                            success--;
+                            failed++;
                         }
                         break;
                     case '>=':
@@ -82,7 +83,7 @@ function roll(rollConsign, condition = null, target = null) {
                             }
                             else {
                                 e = "~~" + e.toString() + "~~";
-                                success--;
+                                failed++;
                             }
                         break;
                     case '<':
@@ -92,7 +93,7 @@ function roll(rollConsign, condition = null, target = null) {
                             }
                             else {
                                 e = "~~" + e.toString() + "~~";
-                                success--;
+                                failed++;
                             }
                         break;
                     case '>':
@@ -102,7 +103,7 @@ function roll(rollConsign, condition = null, target = null) {
                             }
                             else {
                                 e = "~~" + e.toString() + "~~";
-                                success--;
+                                failed++;
                             }
                         break;
                     case '!=':
@@ -112,7 +113,7 @@ function roll(rollConsign, condition = null, target = null) {
                             }
                             else {
                                 e = "~~" + e.toString() + "~~";
-                                success--;
+                                failed++;
                             }
                         break;
                     case '==':
@@ -122,7 +123,7 @@ function roll(rollConsign, condition = null, target = null) {
                             }
                             else {
                                 e = "~~" + e.toString() + "~~";
-                                success--;
+                                failed++;
                             }
                         break;
                 }
@@ -136,7 +137,7 @@ function roll(rollConsign, condition = null, target = null) {
         })
 
         if (condition != null && target != null) {
-            return valret + " : " + success + " success";
+            return valret + " : " + success + " success - " + failed + " failed";
         } else
             return valret;
     }
