@@ -133,7 +133,7 @@ function roll(rollConsign, condition = null, target = null) {
 
             valret += newE;
             if (i < results.length -1 )
-                valret += ", ";
+                valret += "+";
             else
                 valret += ")";
         })
