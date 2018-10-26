@@ -55,52 +55,40 @@ function roll(rollConsign, condition = null, target = null) {
             if (condition != null && target != null) {
                 switch (condition) {
                     case '<=':
-                        results.forEach(element => {
-                            if (element <= parseInt(target))
-                                success++;
-                            else
-                                e = "~~" + e.toString() + "~~";
-                        });
+                        if (e <= parseInt(target))
+                            success++;
+                        else
+                            e = "~~" + e.toString() + "~~";
                         break;
                     case '>=':
-                        results.forEach(element => {
-                            if (element >= parseInt(target))
+                            if (e >= parseInt(target))
                                 success++;
                             else
                                 e = "~~" + e.toString() + "~~";
-                        });
                         break;
                     case '<':
-                        results.forEach(element => {
-                            if (element < parseInt(target))
+                            if (e < parseInt(target))
                                 success++;
                             else
                                 e = "~~" + e.toString() + "~~";
-                        });
                         break;
                     case '>':
-                        results.forEach(element => {
-                            if (element > parseInt(target))
+                            if (e > parseInt(target))
                                 success++;
                             else
                                 e = "~~" + e.toString() + "~~";
-                        });
                         break;
                     case '!=':
-                        results.forEach(element => {
-                            if (element != parseInt(target))
+                            if (e != parseInt(target))
                                 success++;
                             else
                                 e = "~~" + e.toString() + "~~";
-                        });
                         break;
                     case '==':
-                        results.forEach(element => {
-                            if (element == parseInt(target))
+                            if (e == parseInt(target))
                                 success++;
                             else
                                 e = "~~" + e.toString() + "~~";
-                        });
                         break;
                 }
             }
