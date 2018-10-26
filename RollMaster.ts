@@ -39,10 +39,14 @@ function roll(rollConsign, condition = null, target = null) {
     if (value.length != 2)
         return rollSynthax;
     else {
-        if (value[1][value[1].length - 1] === '!')
-            explosive = true;
         value[0] = parseInt(value[0]);
+
+        if (value[1].indexOf('!') > -1) {
+            explosive = true;
+        }
+
         value[1] = parseInt(value[1]);
+
         for (let i = 0; i < value[0]; i++) {
             let res = getRandomInt(value[1]) + 1;
             results.push(res);
