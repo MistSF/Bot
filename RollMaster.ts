@@ -63,73 +63,76 @@ function roll(rollConsign, condition = null, target = null) {
                 results.push(res);
         }
         let valret = "**" + total.toString() + "**" + " (";
-        results.forEach((e, i) => {
+        results.forEach((e: number, i) => {
+            let newE = "";
             if (condition != null && target != null) {
                 switch (condition) {
                     case '<=':
-                        if (parseInt(e) <= parseInt(target)){
-                            e = "**" + e.toString() + "**";
+                        if (e <= parseInt(target)){
+                            newE = "**" + e.toString() + "**";
                             success++;
                         }
                         else {
-                            e = "~~" + e.toString() + "~~";
+                            newE = "~~" + e.toString() + "~~";
                             failed++;
                         }
                         break;
                     case '>=':
-                            if (parseInt(e) >= parseInt(target)){
-                                e = "**" + e.toString() + "**";
+                            if (e >= parseInt(target)){
+                                newE = "**" + e.toString() + "**";
                                 success++;
                             }
                             else {
-                                e = "~~" + e.toString() + "~~";
+                                newE = "~~" + e.toString() + "~~";
                                 failed++;
                             }
                         break;
                     case '<':
-                            if (parseInt(e) < parseInt(target)){
-                                e = "**" + e.toString() + "**";
+                            if (e < parseInt(target)){
+                                newE = "**" + e.toString() + "**";
                                 success++;
                             }
                             else {
-                                e = "~~" + e.toString() + "~~";
+                                newE = "~~" + e.toString() + "~~";
                                 failed++;
                             }
                         break;
                     case '>':
-                            if (parseInt(e) > parseInt(target)){
-                                e = "**" + e.toString() + "**";
+                            if (e > parseInt(target)){
+                                newE = "**" + e.toString() + "**";
                                 success++;
                             }
                             else {
-                                e = "~~" + e.toString() + "~~";
+                                newE = "~~" + e.toString() + "~~";
                                 failed++;
                             }
                         break;
                     case '!=':
-                            if (parseInt(e) != parseInt(target)){
-                                e = "**" + e.toString() + "**";
+                            if (e != parseInt(target)){
+                                newE = "**" + e.toString() + "**";
                                 success++;
                             }
                             else {
-                                e = "~~" + e.toString() + "~~";
+                                newE = "~~" + e.toString() + "~~";
                                 failed++;
                             }
                         break;
                     case '==':
-                            if (parseInt(e) == parseInt(target)){
-                                e = "**" + e.toString() + "**";
+                            if (e == parseInt(target)){
+                                newE = "**" + e.toString() + "**";
                                 success++;
                             }
                             else {
-                                e = "~~" + e.toString() + "~~";
+                                newE = "~~" + e.toString() + "~~";
                                 failed++;
                             }
                         break;
                 }
+            } else {
+                newE = e.toString();
             }
 
-            valret += e.toString();
+            valret += newE;
             if (i < results.length -1 )
                 valret += ", ";
             else
