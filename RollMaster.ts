@@ -55,40 +55,64 @@ function roll(rollConsign, condition = null, target = null) {
             if (condition != null && target != null) {
                 switch (condition) {
                     case '<=':
-                        if (e <= parseInt(target))
+                        if (e <= parseInt(target)){
+                            e = "**" + e.toString() + "**";
                             success++;
-                        else
+                        }
+                        else {
                             e = "~~" + e.toString() + "~~";
+                            success--;
+                        }
                         break;
                     case '>=':
-                            if (e >= parseInt(target))
+                            if (e >= parseInt(target)){
+                                e = "**" + e.toString() + "**";
                                 success++;
-                            else
+                            }
+                            else {
                                 e = "~~" + e.toString() + "~~";
+                                success--;
+                            }
                         break;
                     case '<':
-                            if (e < parseInt(target))
+                            if (e < parseInt(target)){
+                                e = "**" + e.toString() + "**";
                                 success++;
-                            else
+                            }
+                            else {
                                 e = "~~" + e.toString() + "~~";
+                                success--;
+                            }
                         break;
                     case '>':
-                            if (e > parseInt(target))
+                            if (e > parseInt(target)){
+                                e = "**" + e.toString() + "**";
                                 success++;
-                            else
+                            }
+                            else {
                                 e = "~~" + e.toString() + "~~";
+                                success--;
+                            }
                         break;
                     case '!=':
-                            if (e != parseInt(target))
+                            if (e != parseInt(target)){
+                                e = "**" + e.toString() + "**";
                                 success++;
-                            else
+                            }
+                            else {
                                 e = "~~" + e.toString() + "~~";
+                                success--;
+                            }
                         break;
                     case '==':
-                            if (e == parseInt(target))
+                            if (e == parseInt(target)){
+                                e = "**" + e.toString() + "**";
                                 success++;
-                            else
+                            }
+                            else {
                                 e = "~~" + e.toString() + "~~";
+                                success--;
+                            }
                         break;
                 }
             }
