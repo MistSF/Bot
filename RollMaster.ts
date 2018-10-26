@@ -60,14 +60,14 @@ function roll(rollConsign, condition = null, target = null) {
                 i--;
                 results.push("*" + res.toString() +"*");
             } else 
-                results.push(res.toString());
+                results.push(res);
         }
         let valret = "**" + total.toString() + "**" + " (";
         results.forEach((e, i) => {
             if (condition != null && target != null) {
                 switch (condition) {
                     case '<=':
-                        if (e <= parseInt(target)){
+                        if (parseInt(e) <= parseInt(target)){
                             e = "**" + e.toString() + "**";
                             success++;
                         }
@@ -77,7 +77,7 @@ function roll(rollConsign, condition = null, target = null) {
                         }
                         break;
                     case '>=':
-                            if (e >= parseInt(target)){
+                            if (parseInt(e) >= parseInt(target)){
                                 e = "**" + e.toString() + "**";
                                 success++;
                             }
@@ -87,7 +87,7 @@ function roll(rollConsign, condition = null, target = null) {
                             }
                         break;
                     case '<':
-                            if (e < parseInt(target)){
+                            if (parseInt(e) < parseInt(target)){
                                 e = "**" + e.toString() + "**";
                                 success++;
                             }
@@ -97,7 +97,7 @@ function roll(rollConsign, condition = null, target = null) {
                             }
                         break;
                     case '>':
-                            if (e > parseInt(target)){
+                            if (parseInt(e) > parseInt(target)){
                                 e = "**" + e.toString() + "**";
                                 success++;
                             }
@@ -107,7 +107,7 @@ function roll(rollConsign, condition = null, target = null) {
                             }
                         break;
                     case '!=':
-                            if (e != parseInt(target)){
+                            if (parseInt(e) != parseInt(target)){
                                 e = "**" + e.toString() + "**";
                                 success++;
                             }
@@ -117,7 +117,7 @@ function roll(rollConsign, condition = null, target = null) {
                             }
                         break;
                     case '==':
-                            if (e == parseInt(target)){
+                            if (parseInt(e) == parseInt(target)){
                                 e = "**" + e.toString() + "**";
                                 success++;
                             }
