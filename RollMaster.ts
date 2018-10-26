@@ -62,9 +62,7 @@ function roll(rollConsign, condition = null, target = null) {
             results.push(res);
         }
         let valret = "**" + total.toString() + "**" + " (";
-        results.forEach((e, i) => {
-            console.log(e + " : " + typeof(e));
-            
+        results.forEach((e, i) => {            
             let newE = "";
             if (condition != null && target != null) {
                 switch (condition) {
