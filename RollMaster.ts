@@ -54,10 +54,12 @@ function roll(rollConsign, condition = null, target = null) {
 
         for (let i = 0; i < value[0] && roll < 200; i++, roll++) {
             let res = getRandomInt(value[1]) + 1;
-            results.push(res);
             total += res;
-            if (explosive && res >= value[1] - range)
+            if (explosive && res >= value[1] - range) {
                 i--;
+                results.push("*" + res.toString() +"*");
+            } else 
+                results.push(res.toString());
         }
         let valret = "**" + total.toString() + "**" + " (";
         results.forEach((e, i) => {
