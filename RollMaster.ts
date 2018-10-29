@@ -32,7 +32,7 @@ function manageMessage (msg) {
         }
     }
     
-    if (msg.author.username != "Butt Kicker") {
+    if (msg.author.username != "Roll's Master") {
         if (spammers.indexOf(msg.author.username) != -1) {
             msg.delete(100).catch(console.error);
         }
