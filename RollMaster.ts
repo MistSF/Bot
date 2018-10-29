@@ -60,7 +60,7 @@ function manageMessage (msg) {
 
 setInterval(() => {
     nbMsg--
-}, 60000);
+}, 10000);
 
 function isMute(msg) {
     spammers.forEach(e => {
