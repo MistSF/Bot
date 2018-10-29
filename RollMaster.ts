@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+const admin = "Admin";
+let adminBool = false;
 let spammers = [];
 let currentUser = '';
 let nbMsg = 0;
@@ -16,7 +18,7 @@ client.on('message', (msg) => {
 client.login('NTA1MjgwNTYxOTkzMDg5MDI1.DrRTLA.ih84J-EUjd4PjlbiAMcs7URweLg');
 
 function manageMessage (msg) {
-    
+    isAdmin(msg);
     if (msg.author.username != "Roll's Master") {
         if (spammers.indexOf(msg.author.username) != -1) {
             msg.delete(100).catch(console.error);
@@ -24,11 +26,10 @@ function manageMessage (msg) {
         else if (msg.author.username != currentUser){
             currentUser = msg.author.username;
             nbMsg = 0;
-        } else{
+        } else if (!adminBool){
             nbMsg++;
             if (nbMsg >= 4) {
                 spammers.push(msg.author.username);
-                console.log(spammers);                
                 setTimeout(() => {
                     spammers.shift();
                     msg.reply("C'est bon tu peux recommencer à écrire, mais fini les conneries !")
@@ -179,17 +180,22 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
-const rollSynthax = `Please respect this format :
-/r (nb dice)d(dice value)
-if explosiv /r 1d10!
-for succes count /r 1d10 (condition)
-example :
-/r 1d10! > 5
-/r 1d100 <= 10`;
-
 const conditionRules = ` > for superior
 < for inferior
 >= for superior or egal
 <= for inferior or egal
 == for egal
 != for different`;
+
+const rollSynthax = `/r (nb Dés)d(valeur dé)
+Ajouter '!' pour jet explosif
+Pour des conditions :
+` + conditionRules;
+
+function isAdmin(msg) {
+    msg.member.roles.forEach(element => {
+        if (element.name == admin) {
+            adminBool = true;
+        }
+    });
+}
