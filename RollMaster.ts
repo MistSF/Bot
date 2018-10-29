@@ -16,21 +16,6 @@ client.on('message', (msg) => {
 client.login('NTA1MjgwNTYxOTkzMDg5MDI1.DrRTLA.ih84J-EUjd4PjlbiAMcs7URweLg');
 
 function manageMessage (msg) {
-    if (msg.content[0] === '/') {
-        const value = msg.content.split(' ');        
-        switch (value[0]) {
-            case '/r':
-                if (value[1]){
-                    if (value[2] && value[3])
-                        msg.reply(roll(value[1], value[2], value[3]));
-                    else
-                        msg.reply(roll(value[1]));
-                } else {
-                    msg.reply(rollSynthax);
-                }
-                break;
-        }
-    }
     
     if (msg.author.username != "Roll's Master") {
         if (spammers.indexOf(msg.author.username) != -1) {
@@ -51,6 +36,21 @@ function manageMessage (msg) {
                 msg.reply("TU VAS ARRETER DE SPAMMER OUI !!!");
                 nbMsg = 0;
             }
+        }
+    } 
+    if (msg.content[0] === '/') {
+        const value = msg.content.split(' ');        
+        switch (value[0]) {
+            case '/r':
+                if (value[1]){
+                    if (value[2] && value[3])
+                        msg.reply(roll(value[1], value[2], value[3]));
+                    else
+                        msg.reply(roll(value[1]));
+                } else {
+                    msg.reply(rollSynthax);
+                }
+                break;
         }
     }
 }
