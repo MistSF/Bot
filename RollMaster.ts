@@ -55,6 +55,10 @@ function manageMessage (msg) {
     }
 }
 
+setInterval(() => {
+    nbMsg--
+}, 60000);
+
 function roll(rollConsign, condition = null, target = null) {
     let roll = 0;
     let total = 0;
