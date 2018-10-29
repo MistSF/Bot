@@ -19,14 +19,15 @@ client.login('NTA1MjgwNTYxOTkzMDg5MDI1.DrRTLA.ih84J-EUjd4PjlbiAMcs7URweLg');
 
 function manageMessage (msg) {
     isAdmin(msg);
+
     if (msg.author.username != "Roll's Master") {
         if (spammers.indexOf(msg.author.username) != -1) {
-            msg.delete(100).catch(console.error);
+            msg.delete(1).catch(console.error);
         }
-        else if (msg.author.username != currentUser){
+        if (msg.author.username != currentUser){
             currentUser = msg.author.username;
             nbMsg = 0;
-        } else if (!adminBool){
+        } else if (!adminBool && !isMute(msg)){
             nbMsg++;
             if (nbMsg >= 4) {
                 spammers.push(msg.author.username);
@@ -54,11 +55,21 @@ function manageMessage (msg) {
                 break;
         }
     }
+    adminBool = false;
 }
 
 setInterval(() => {
     nbMsg--
 }, 60000);
+
+function isMute(msg) {
+    spammers.forEach(e => {
+        if (e == msg.author.username){
+            return true;
+        }
+    })
+    return false;
+}
 
 function roll(rollConsign, condition = null, target = null) {
     let roll = 0;
