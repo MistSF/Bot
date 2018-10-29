@@ -1,6 +1,10 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+let spammers = [];
+let currentUser = '';
+let nbMsg = 0;
+
 client.on('ready', () => {
     console.log('logged in as ' + client.user.tag);    
 })
@@ -25,6 +29,28 @@ function manageMessage (msg) {
                     msg.reply(rollSynthax);
                 }
                 break;
+        }
+    }
+    
+    if (msg.author.username != "Butt Kicker") {
+        if (spammers.indexOf(msg.author.username) != -1) {
+            msg.delete(100).catch(console.error);
+        }
+        else if (msg.author.username != currentUser){
+            currentUser = msg.author.username;
+            nbMsg = 0;
+        } else{
+            nbMsg++;
+            if (nbMsg >= 4) {
+                spammers.push(msg.author.username);
+                console.log(spammers);                
+                setTimeout(() => {
+                    spammers.shift();
+                    msg.reply("C'est bon tu peux recommencer à écrire, mais fini les conneries !")
+                }, 300000)               
+                msg.reply("TU VAS ARRETER DE SPAMMER OUI !!!");
+                nbMsg = 0;
+            }
         }
     }
 }
